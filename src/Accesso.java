@@ -17,6 +17,8 @@ public class Accesso
 		this.noleggioSiNo=noleggioSiNo;
 		
 	}
+	
+
 
 	public LocalTime getOraIngresso() 
 	{
@@ -50,6 +52,16 @@ public class Accesso
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public boolean getNoleggioSiNo()
+	{
+		return noleggioSiNo;
+	}
+	
+	public String toString()
+	{
+		return(getNome()+" "+getCognome()+" "+getCodice()+" "+getOraIngresso()+" "+getNoleggioSiNo());
 	}
 	
 }
