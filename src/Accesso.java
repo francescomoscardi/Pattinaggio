@@ -4,11 +4,14 @@ public class Accesso
 {
 	private String nome;
 	private String cognome;
-	private String codice;
+	private int codice;
 	private LocalTime oraIngresso;
 	private boolean noleggioSiNo;
+	private int tariffaAccesso=5;
+	private int tariffaSupplementare=2;
 	
-	public Accesso(String nome, String cognome, String codice, int ore, int minuti, int secondi, boolean ingressoSiNo)
+	
+	public Accesso(String nome, String cognome, int codice, int ore, int minuti, int secondi, boolean ingressoSiNo)
 	{
 		this.setNome(nome);
 		this.setCognome(cognome);
@@ -30,11 +33,11 @@ public class Accesso
 		oraIngresso=LocalTime.of(ore, minuti, secondi);
 	}
 
-	public String getCodice() {
+	public int getCodice() {
 		return codice;
 	}
 
-	public void setCodice(String codice) {
+	public void setCodice(int codice) {
 		this.codice = codice;
 	}
 
@@ -62,6 +65,18 @@ public class Accesso
 	public String toString()
 	{
 		return(getNome()+" "+getCognome()+" "+getCodice()+" "+getOraIngresso()+" "+getNoleggioSiNo());
+	}
+
+
+
+	public int getTariffaAccesso() {
+		return tariffaAccesso;
+	}
+
+
+
+	public void setTariffaAccesso(int tariffaAccesso) {
+		this.tariffaAccesso = tariffaAccesso;
 	}
 	
 }
