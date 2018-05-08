@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Scanner;
 
@@ -22,41 +23,8 @@ public class Lista implements Serializable
 		elementi=0;
 	}
 	
-	public void inserisciManualmente(String nome, String cognome, int codice, LocalTime oraIngresso, boolean noleggioSiNo )
-	{
-		System.out.println("inserisci il pattinatore: ");
-		
-		System.out.println("inserisci nome ");
-		Scanner tastiera=new Scanner(System.in);
-		nome=tastiera.nextLine();
-		
-		System.out.println("inserisci cognome: ");
-		Scanner tastiera1=new Scanner(System.in);
-		cognome=tastiera1.nextLine();
-		
-		System.out.println("inserisci codice identificativo");
-		Scanner tastiera2=new Scanner(System.in);
-		codice=tastiera2.nextInt();
-		
-		System.out.println("vuoi noleggiare i pattini? 1=si 2=no");
-		int sceltaPattini;
-		Scanner tastiera3=new Scanner(System.in);
-		sceltaPattini=tastiera3.nextInt();
-		
-		switch (sceltaPattini) 
-		{
-		case 1:
-			noleggioSiNo=true;
-			break;
-		case 2:
-			noleggioSiNo=false;
 
-		default:
-			break;
-			
-		
-		}
-	}
+	
 		
 	
 	public void inserisciPersona (Accesso persona)
@@ -67,10 +35,42 @@ public class Lista implements Serializable
 		elementi++;
 	}
 	
-	public void registraUscita(Accesso persona, String codice)
+	public void eliminaAccesso(int posizione) 
 	{
 		
+		
+		Nodo p;
+		p=getLinkPosizione(posizione);
+		Nodo precedente=getLinkPosizione(posizione-1);
+		precedente.setLink(p.getLink());
+		elementi--;
+		
 	}
+	
+	public void esportaCSV (String nomeFile) throws IOException
+	{
+		TextFile file= new TextFile (nomeFile,'W');
+		String personaCSV;
+		Accesso persona;
+		
+		for (int i = 1; i <= getElementi(); i++) 
+		{
+			persona=getAccesso(i);
+			personaCSV=persona.getNome()+";"+persona.getCognome()+";";
+			//file.toFile(personaCSV);
+		}
+		file.closeFile();
+		
+	}
+	
+	public Accesso getAccesso (int posizione) 
+	{
+		
+		Nodo p=getLinkPosizione(posizione);
+		return p.getInfo();		
+	}
+	
+	
 	
 	private Nodo creaNodo(Accesso persona, Nodo link)
 	{

@@ -78,5 +78,17 @@ public class Accesso
 	public void setTariffaAccesso(int tariffaAccesso) {
 		this.tariffaAccesso = tariffaAccesso;
 	}
+
+
+
+	public int getTariffaSupplementare() {
+		return tariffaSupplementare;
+	}
+
+
+
+	public void setTariffaSupplementare(int tariffaSupplementare) {
+		this.tariffaSupplementare = tariffaSupplementare;
+	}
 	
 }
