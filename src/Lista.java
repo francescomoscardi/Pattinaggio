@@ -100,12 +100,16 @@ public class Lista implements Serializable
 	{
 		System.out.println("vuoi cambiare le tariffe? 1=si 2=no");
 		int cambiaTariffe=0;
+		Scanner tastiera5=new Scanner(System.in);
+		cambiaTariffe=tastiera5.nextInt();
 		
 		switch (cambiaTariffe) 
 		{
 		case 1:
 			System.out.println("vuoi cambiare la tariffa di Accesso(1) o quella supplementare(2)?");
 			int tipoTariffa=0;
+			Scanner tastiera6=new Scanner(System.in);
+			tipoTariffa=tastiera6.nextInt();
 			switch (tipoTariffa) 
 			{
 			case 1:
@@ -138,6 +142,20 @@ public class Lista implements Serializable
 		}
 	}
 	
+	public String toString()
+	{
+		String risultato="Head";
+		if (elementi==0)
+			return risultato+="-->";
+		Nodo p=head;
+		while (p!=null)
+		{
+			risultato+="-->"+p.getInfo().toString();
+			p=p.getLink();
+		}
+		return risultato;
+	}
+	
 	public void salvaLista(String nomeFile) throws IOException
 	{
 		FileOutputStream file =new FileOutputStream(nomeFile);
@@ -152,11 +170,11 @@ public class Lista implements Serializable
 		FileInputStream file=new FileInputStream(nomeFile);
 		ObjectInputStream reader= new ObjectInputStream(file);
 		
-		Lista lista1;
+		Lista l1;
 		
-		lista1=(Lista)(reader.readObject());
+		l1=(Lista)(reader.readObject());
 		file.close();
-		return lista1;
+		return l1;
 	}
 	
 	
